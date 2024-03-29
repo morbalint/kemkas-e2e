@@ -83,6 +83,34 @@ test('harcos PDF', async ({page}) => {
   await downloadAndCompare(page, './expectations/Nazdreg Ug Urdgrub_9.pdf');
 })
 
+test('multiclass PDF', async ({page}) => {
+  await page.goto("/");
+  await page.getByTestId("nev").fill("Kaman Gunt");
+  await page.getByTestId("faj").selectOption("f_2e_birodalmi");
+
+  await page.getByTestId("osztaly").selectOption("o_2e_varazslo");
+  await page.getByText("Szintlépés!").click()
+  await page.getByTestId("HP-2").fill("1")
+  await page.getByText("Szintlépés!").click()
+  await page.getByTestId("HP-3").fill("1")
+  await page.getByText("Szintlépés!").click()
+  await page.getByTestId("osztaly-4").selectOption("o_2e_tolvaj");
+  await page.getByTestId("tulajdonsag-4").selectOption("t_int")
+  await page.getByTestId("HP-4").fill("6")
+  await page.getByText("Szintlépés!").click()
+  await page.getByTestId("HP-5").fill("6")
+  await page.getByText("Szintlépés!").click()
+  await page.getByTestId("HP-6").fill("6")
+
+  await page.getByText("Fegyver hozzáadása").click()
+  await page.getByTestId("felszereles-fegyver-0").selectOption("bot");
+  await page.getByText("Fegyver hozzáadása").click()
+  await page.getByTestId("felszereles-fegyver-1").selectOption("tor");
+
+  await downloadAndCompare(page, './expectations/Kaman Gunt_6.pdf');
+})
+
+
 async function downloadAndCompare(page: Page, expectedPdfPath: string) {
   const downloadPromise = page.waitForEvent('download');
   await page.getByText("PDF").click()
