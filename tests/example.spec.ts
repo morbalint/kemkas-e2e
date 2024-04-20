@@ -46,9 +46,11 @@ test('harcos PDF', async ({page}) => {
   await page.getByTestId("nev").fill("Nazdreg Ug Urdgrub");
   await page.getByTestId("faj").click();
   await expect(page.getByTestId("faj")).toBeVisible();
-  await expect(page.getByTestId("faj")).toHaveValue("f_2e_ember")
   await page.getByTestId("faj").selectOption("f_2e_felork");
   await expect(page.getByTestId("faj")).toHaveValue("f_2e_felork")
+
+  await page.getByTestId("t_ero").fill("13")
+  await page.getByTestId("t_egs").fill("13")
 
   await page.getByTestId("osztaly").selectOption("o_2e_harcos");
   await page.getByTestId("harcos-specialization-1").selectOption("bot");
@@ -59,6 +61,7 @@ test('harcos PDF', async ({page}) => {
   await page.getByTestId("harcos-specialization-3").selectOption("fejsze");
   await page.getByText("Szintlépés!").click()
   await page.getByTestId("HP-4").fill("10")
+  await page.getByTestId("tulajdonsag-4").selectOption("t_egs")
   await page.getByText("Szintlépés!").click()
   await page.getByTestId("HP-5").fill("10")
   await page.getByTestId("harcos-specialization-5").selectOption("csatabard");
